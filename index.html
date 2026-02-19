@@ -59,7 +59,7 @@
 
   .header {
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
     position: relative;
   }
 
@@ -112,12 +112,12 @@
   .content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6px 28px;
+    gap: 20px 28px;
     position: relative;
   }
 
   .section {
-    margin-bottom: 6px;
+    margin-bottom: 16px;
   }
 
   .section-title {
@@ -125,51 +125,60 @@
     font-weight: 800;
     letter-spacing: 3px;
     text-transform: uppercase;
-    margin-bottom: 6px;
-    padding-bottom: 4px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
     border-bottom: 2px solid rgba(0,0,0,0.2);
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
   }
 
   .section-icon {
-    width: 18px;
-    height: 18px;
-    background: #1a1a1a;
-    border-radius: 50%;
+    width: 20px;
+    height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
 
-  .section-icon span {
-    color: #f7b7d3;
-    font-size: 9px;
-    font-weight: 700;
+  .section-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: #1a1a1a;
   }
 
-  .player {
-    margin-bottom: 7px;
-    line-height: 1.35;
+  .player-card {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.2s ease;
   }
 
-  .player:last-child {
+  .player-card:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .player-card:last-child {
     margin-bottom: 0;
   }
 
   .player-header {
     display: flex;
-    align-items: baseline;
-    gap: 6px;
-    margin-bottom: 1px;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
   }
 
   .player-name {
     font-weight: 800;
     font-size: 14px;
     letter-spacing: 0.3px;
+    flex: 1;
   }
 
   .player-vote {
@@ -177,8 +186,8 @@
     font-size: 15px;
     background: #1a1a1a;
     color: #f7b7d3;
-    padding: 1px 7px;
-    border-radius: 3px;
+    padding: 2px 10px;
+    border-radius: 6px;
     line-height: 1.4;
     white-space: nowrap;
   }
@@ -191,32 +200,28 @@
   .player-desc {
     font-size: 11px;
     font-weight: 400;
-    opacity: 0.75;
-    line-height: 1.4;
-    margin-top: 1px;
+    opacity: 0.8;
+    line-height: 1.5;
   }
 
   .mvp-badge {
     display: inline-flex;
     align-items: center;
-    gap: 3px;
+    gap: 4px;
     background: #1a1a1a;
     color: #f7b7d3;
     font-size: 9px;
     font-weight: 800;
-    padding: 2px 7px;
-    border-radius: 3px;
+    padding: 3px 8px;
+    border-radius: 5px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    margin-left: 4px;
-    vertical-align: middle;
     line-height: 1.4;
   }
 
   .mvp-star {
     font-size: 9px;
     color: #f7b7d3;
-    filter: none;
   }
 
   .mvp .player-name {
@@ -229,11 +234,16 @@
     font-size: 16px;
   }
 
+  .mvp .player-card {
+    background: rgba(255, 255, 255, 0.4);
+    border: 2px solid rgba(0, 0, 0, 0.2);
+  }
+
   .sub-prefix {
     font-size: 10px;
-    font-weight: 600;
-    opacity: 0.55;
-    margin-right: 2px;
+    font-weight: 700;
+    opacity: 0.5;
+    margin-right: 4px;
   }
 
   .left-col {
@@ -258,8 +268,8 @@
 
   .footer {
     text-align: center;
-    margin-top: 14px;
-    padding-top: 10px;
+    margin-top: 20px;
+    padding-top: 14px;
     border-top: 2px solid rgba(0,0,0,0.1);
   }
 
@@ -294,10 +304,14 @@
       <!-- PORTIERE -->
       <div class="section">
         <div class="section-title">
-          <div class="section-icon"><span>P</span></div>
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.5 4C21.33 4 22 4.67 22 5.5V10C22 11.11 21.11 12 20 12H19V15C19 16.11 18.11 17 17 17H16V20C16 21.11 15.11 22 14 22H10C8.89 22 8 21.11 8 20V17H7C5.89 17 5 16.11 5 15V12H4C2.89 12 2 11.11 2 10V5.5C2 4.67 2.67 4 3.5 4H20.5M20 10V6H17V10H20M15 6H9V10H15V6M4 6V10H7V6H4M10 12V20H14V12H10Z"/>
+            </svg>
+          </div>
           PORTIERE
         </div>
-        <div class="player">
+        <div class="player-card">
           <div class="player-header">
             <span class="player-name">Joronen</span>
             <span class="player-vote">8</span>
@@ -309,24 +323,28 @@
       <!-- DIFESA -->
       <div class="section">
         <div class="section-title">
-          <div class="section-icon"><span>D</span></div>
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1Z"/>
+            </svg>
+          </div>
           DIFESA
         </div>
-        <div class="player">
+        <div class="player-card">
           <div class="player-header">
             <span class="player-name">Bereszynski</span>
             <span class="player-vote">6</span>
           </div>
           <div class="player-desc">Gara tranquilla.</div>
         </div>
-        <div class="player">
+        <div class="player-card">
           <div class="player-header">
             <span class="player-name">Bani</span>
             <span class="player-vote">6,5</span>
           </div>
           <div class="player-desc">Sempre perfetto in posizionamento, controllo totale.</div>
         </div>
-        <div class="player">
+        <div class="player-card">
           <div class="player-header">
             <span class="player-name">Ceccaroni</span>
             <span class="player-vote">6</span>
@@ -338,38 +356,42 @@
       <!-- CENTROCAMPO -->
       <div class="section">
         <div class="section-title">
-          <div class="section-icon"><span>C</span></div>
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
+            </svg>
+          </div>
           CENTROCAMPO
         </div>
-        <div class="player">
+        <div class="player-card">
           <div class="player-header">
             <span class="player-name">Pierozzi</span>
             <span class="player-vote">7,5</span>
           </div>
           <div class="player-desc">Gol da urlo al volo di sinistro. Moto perpetuo, sembra essere tornato il vecchio Pierozzi di inizio stagione.</div>
         </div>
-        <div class="player">
+        <div class="player-card">
           <div class="player-header">
             <span class="player-name">Segre</span>
             <span class="player-vote">6</span>
           </div>
           <div class="player-desc">Sempre prezioso a centrocampo.</div>
         </div>
-        <div class="player">
+        <div class="player-card">
           <div class="player-header">
             <span class="player-name">Ranocchia</span>
             <span class="player-vote">7,5</span>
           </div>
           <div class="player-desc">Gol fortunoso ma meritato. Si riscatta dopo la brutta prova con la Samp.</div>
         </div>
-        <div class="player">
+        <div class="player-card">
           <div class="player-header">
             <span class="player-name">Augello</span>
             <span class="player-vote">7,5</span>
           </div>
           <div class="player-desc">Cross millimetrici continui, corner perfetto per Pohjanpalo.</div>
         </div>
-        <div class="player">
+        <div class="player-card">
           <div class="player-header">
             <span class="player-name">Palumbo</span>
             <span class="player-vote">7,5</span>
@@ -385,17 +407,21 @@
       <!-- ATTACCO -->
       <div class="section">
         <div class="section-title">
-          <div class="section-icon"><span>A</span></div>
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.92,5H5L14,16L15,13.53L17.6,16.13C17.8,16.33 18,16.5 18.24,16.63L15.89,19L17.3,20.42L21.42,16.3L20,14.89L17.63,17.24C17.5,17 17.33,16.8 17.13,16.6L14.53,14L17,3H15.92L13.93,11.3L11.94,3H10.92L7.97,11.3L6.92,5M3,18.5L4.5,20L6,18.5L4.5,17L3,18.5M5.5,21L7,22.5L8.5,21L7,19.5L5.5,21M2,21L3.5,22.5L5,21L3.5,19.5L2,21Z"/>
+            </svg>
+          </div>
           ATTACCO
         </div>
-        <div class="player">
+        <div class="player-card">
           <div class="player-header">
             <span class="player-name">Le Douaron</span>
             <span class="player-vote">7</span>
           </div>
           <div class="player-desc">Si sacrifica sempre ed è uno snodo continuo del gioco offensivo. Finalmente meno pasticcione.</div>
         </div>
-        <div class="player mvp">
+        <div class="player-card mvp">
           <div class="player-header">
             <span class="player-name">Pohjanpalo</span>
             <span class="player-vote">7,5</span>
@@ -408,10 +434,14 @@
       <!-- SOSTITUZIONI -->
       <div class="section">
         <div class="section-title">
-          <div class="section-icon"><span>S</span></div>
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20,9V15H12V19.84L4.16,12L12,4.16V9H20Z"/>
+            </svg>
+          </div>
           SOSTITUZIONI
         </div>
-        <div class="player">
+        <div class="player-card">
           <div class="player-header">
             <span class="sub-prefix">60'</span>
             <span class="player-name">Magnani</span>
@@ -419,7 +449,7 @@
           </div>
           <div class="player-desc">Rientra nel centrodestra ideale. Qualche errore in impostazione, poi cresce.</div>
         </div>
-        <div class="player">
+        <div class="player-card">
           <div class="player-header">
             <span class="sub-prefix">60'</span>
             <span class="player-name">Gomes</span>
@@ -427,7 +457,7 @@
           </div>
           <div class="player-desc">Entra e gestisce senza fronzoli.</div>
         </div>
-        <div class="player">
+        <div class="player-card">
           <div class="player-header">
             <span class="sub-prefix">60'</span>
             <span class="player-name">Johnsen</span>
@@ -435,7 +465,7 @@
           </div>
           <div class="player-desc">Passerella a risultato acquisito.</div>
         </div>
-        <div class="player">
+        <div class="player-card">
           <div class="player-header">
             <span class="sub-prefix">77'</span>
             <span class="player-name">Blin</span>
@@ -443,7 +473,7 @@
           </div>
           <div class="player-desc">Fa legna, anche se non c'è molto da fare.</div>
         </div>
-        <div class="player">
+        <div class="player-card">
           <div class="player-header">
             <span class="sub-prefix">81'</span>
             <span class="player-name">Veroli</span>
@@ -456,10 +486,14 @@
       <!-- ALLENATORE -->
       <div class="section" style="margin-top: auto; padding-top: 10px; border-top: 2px solid rgba(0,0,0,0.12);">
         <div class="section-title">
-          <div class="section-icon"><span>🎩</span></div>
+          <div class="section-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,8.39C13.57,9.4 15.42,10 17.42,10C18.2,10 18.95,9.91 19.67,9.74C19.88,10.45 20,11.21 20,12C20,16.41 16.41,20 12,20C9.39,20 7.05,18.67 5.67,16.66C6.19,16.88 6.75,17 7.33,17C8.38,17 9.37,16.62 10.14,15.94C10.31,15.8 10.5,15.68 10.68,15.54C10.84,15.4 11,15.27 11.15,15.12C11.39,14.91 11.61,14.66 11.8,14.38C12.08,13.95 12.28,13.45 12.38,12.91C12.38,12.87 12.39,12.83 12.39,12.79C12.43,12.57 12.45,12.34 12.45,12.11C12.45,11.24 12.21,10.43 11.8,9.74C11.61,9.43 11.39,9.15 11.14,8.91C10.95,8.72 10.75,8.54 10.53,8.38C10.39,8.28 10.24,8.18 10.09,8.09C9.79,7.91 9.46,7.77 9.11,7.68C8.91,7.63 8.71,7.6 8.5,7.6C7.5,7.6 6.63,8.03 6.03,8.72C5.88,8.89 5.74,9.08 5.62,9.28C4.65,9.54 3.75,9.95 2.96,10.48C2.35,10.13 2,9.48 2,8.72C2,7.43 3.07,6.39 4.39,6.39C5.71,6.39 6.78,7.43 6.78,8.72C6.78,8.87 6.76,9 6.72,9.14C7.22,8.78 7.83,8.56 8.5,8.56C9.94,8.56 11.21,9.29 12,10.41C12.79,9.29 14.06,8.56 15.5,8.56C16.17,8.56 16.78,8.78 17.28,9.14C17.24,9 17.22,8.87 17.22,8.72C17.22,7.43 18.29,6.39 19.61,6.39C20.93,6.39 22,7.43 22,8.72C22,9.48 21.65,10.13 21.04,10.48C20.25,9.95 19.35,9.54 18.38,9.28C18.26,9.08 18.12,8.89 17.97,8.72C17.37,8.03 16.5,7.6 15.5,7.6C15.29,7.6 15.09,7.63 14.89,7.68C14.54,7.77 14.21,7.91 13.91,8.09C13.76,8.18 13.61,8.28 13.47,8.38C13.25,8.54 13.05,8.72 12.86,8.91C12.61,9.15 12.39,9.43 12.2,9.74C11.79,10.43 11.55,11.24 11.55,12.11C11.55,12.34 11.57,12.57 11.61,12.79C11.61,12.83 11.62,12.87 11.62,12.91C11.72,13.45 11.92,13.95 12.2,14.38C12.39,14.66 12.61,14.91 12.85,15.12C13,15.27 13.16,15.4 13.32,15.54C13.5,15.68 13.69,15.8 13.86,15.94C14.63,16.62 15.62,17 16.67,17C17.25,17 17.81,16.88 18.33,16.66C16.95,18.67 14.61,20 12,20M12,8.39Z"/>
+            </svg>
+          </div>
           ALLENATORE
         </div>
-        <div class="player">
+        <div class="player-card">
           <div class="player-header">
             <span class="player-name">Inzaghi</span>
             <span class="player-vote">7,5</span>
