@@ -200,8 +200,8 @@
     display: inline-flex;
     align-items: center;
     gap: 3px;
-    background: linear-gradient(135deg, #ffd700, #ffb800);
-    color: #1a1a1a;
+    background: #1a1a1a;
+    color: #f7b7d3;
     font-size: 9px;
     font-weight: 800;
     padding: 2px 7px;
@@ -213,9 +213,10 @@
     line-height: 1.4;
   }
 
-  .mvp-badge::before {
-    content: '⭐';
+  .mvp-star {
     font-size: 9px;
+    color: #f7b7d3;
+    filter: none;
   }
 
   .mvp .player-name {
@@ -223,8 +224,8 @@
   }
 
   .mvp .player-vote {
-    background: linear-gradient(135deg, #ffd700, #ffb800);
-    color: #1a1a1a;
+    background: #1a1a1a;
+    color: #f7b7d3;
     font-size: 16px;
   }
 
@@ -245,11 +246,14 @@
     flex-direction: column;
   }
 
-  .section-allenatore {
-    grid-column: 1 / -1;
-    margin-top: 4px;
-    padding-top: 8px;
-    border-top: 2px solid rgba(0,0,0,0.15);
+  .divider-vertical {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(0,0,0,0.08);
+    pointer-events: none;
   }
 
   .footer {
@@ -265,16 +269,6 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     opacity: 0.4;
-  }
-
-  .divider-vertical {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: rgba(0,0,0,0.08);
-    pointer-events: none;
   }
 </style>
 </head>
@@ -405,7 +399,7 @@
           <div class="player-header">
             <span class="player-name">Pohjanpalo</span>
             <span class="player-vote">7,5</span>
-            <span class="mvp-badge">MVP</span>
+            <span class="mvp-badge"><span class="mvp-star">★</span> MVP</span>
           </div>
           <div class="player-desc">Come un toro infuriato sfonda la rete al 4'. Doppietta annullata tra le polemiche. Sale a 16 gol in campionato e non sembra volersi fermare.</div>
         </div>
@@ -459,7 +453,7 @@
         </div>
       </div>
 
-      <!-- ALLENATORE (spanning full width via grid) -->
+      <!-- ALLENATORE -->
       <div class="section" style="margin-top: auto; padding-top: 10px; border-top: 2px solid rgba(0,0,0,0.12);">
         <div class="section-title">
           <div class="section-icon"><span>🎩</span></div>
