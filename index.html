@@ -2,250 +2,211 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schermata Viaggio Attivo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Biglietto Digitale - Ottimizzato Oppo</title>
     <style>
-        /* --- Stile Generale --- */
+        :root {
+            --primary-green: #008f00;
+            --btn-blue: #0077c2;
+            --card-white: #ffffff;
+            --safe-top: env(safe-area-inset-top, 40px); /* Gestione Notch/Punch-hole */
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Un font simile */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: #008f00; /* Il verde dello sfondo */
-            color: #ffffff;
+            background-color: var(--primary-green);
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* --- Contenitore Principale (lo schermo) --- */
-        .app-container {
-            width: 380px; /* Misura approssimativa di uno smartphone */
-            height: 700px; /* Misura approssimativa */
-            background-color: #008f00; /* Stesso verde */
-            padding: 20px;
-            position: relative; /* Per posizionare la 'X' */
-            display: flex;
-            flex-direction: column;
-            gap: 15px; /* Spazio tra i moduli */
-            border-radius: 10px; /* Bordi leggermente arrotondati */
-            overflow: hidden; /* Taglia i contenuti in eccesso */
-        }
-
-        /* --- Bottone Chiudi (X) --- */
-        .close-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        /* --- Titolo e Contatore --- */
-        .header-title {
-            font-size: 18px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .timer-container {
-            display: flex;
-            align-items: center;
-            gap: 2px;
-        }
-
-        .count-number {
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        /* --- Effetto Scorrimento --- */
-        .scrolling-digits {
-            display: inline-flex;
+            align-items: flex-start;
+            min-height: 100dvh; /* Altezza dinamica per schermi lunghi */
             overflow: hidden;
-            height: 1.2em;
         }
 
-        .scrolling-digit {
-            position: relative;
-            transform: translateY(0%);
-            transition: transform 0.2s ease; /* Fluidità dello scorrimento */
-        }
-
-        .next-digit-number {
-            position: absolute;
-            left: 0;
+        /* --- Container Principale ottimizzato per 20:9 --- */
+        .app-shell {
             width: 100%;
-            height: 100%;
-        }
-
-        /* --- Stile dei Moduli (Carte Bianche) --- */
-        .module-card {
-            background-color: white;
-            color: black;
-            padding: 20px;
-            border-radius: 10px;
+            max-width: 500px; /* Limite per non sgranare su tablet */
+            height: 100dvh;
+            padding: var(--safe-top) 20px 20px 20px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
+            position: relative;
         }
 
-        .user-info {
-            font-weight: bold;
+        .close-x {
+            position: absolute;
+            top: var(--safe-top);
+            right: 20px;
+            font-size: 28px;
+            color: white;
+            font-weight: 200;
         }
 
-        .user-id {
-            font-size: 16px;
-        }
-
-        /* --- Modulo Dettagli Viaggio --- */
-        .trip-details {
-            gap: 10px;
-        }
-
-        .route-info {
+        /* --- Header con Timer --- */
+        .header {
+            margin-top: 10px;
+            color: white;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
 
-        .r-badge {
-            background-color: #333;
+        /* --- Animazione Rolling Counter --- */
+        .timer-box {
+            display: flex;
+            align-items: center;
+        }
+
+        .rolling-container {
+            height: 1.2em;
+            overflow: hidden;
+            line-height: 1.2em;
+            position: relative;
+        }
+
+        .rolling-list {
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+        }
+
+        /* --- Card Bianche --- */
+        .card {
+            background: var(--card-white);
+            border-radius: 16px; /* Bordi più morbidi stile moderno Android */
+            padding: 22px;
+            color: black;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .user-name { font-size: 1.3rem; font-weight: 700; margin-bottom: 4px; }
+        .user-code { font-size: 1.1rem; font-weight: 500; letter-spacing: 0.5px; }
+
+        .label { color: #707070; font-size: 0.85rem; margin-bottom: 4px; display: block; }
+        .info-bold { font-size: 1.15rem; font-weight: 700; line-height: 1.3; }
+
+        .route-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
+        .badge-r {
+            background: #333;
             color: white;
-            padding: 5px;
-            width: 30px;
-            height: 30px;
+            min-width: 32px;
+            height: 32px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 14px;
+            border-radius: 6px;
             font-weight: bold;
-            border-radius: 5px;
+            font-size: 0.9rem;
         }
 
-        .route-description {
-            font-size: 16px;
-            font-weight: bold;
-            line-height: 1.4;
-        }
+        .spacer { margin-top: 18px; }
 
-        /* --- Label e Testo fisso --- */
-        .label {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 3px;
-        }
-
-        .detail-text {
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        /* --- Bottone Controlla Validità --- */
-        .check-button {
-            background-color: #0077c2; /* Il blu del bottone */
+        /* --- Bottone Blu --- */
+        .btn-check {
+            background-color: var(--btn-blue);
             color: white;
             border: none;
-            padding: 12px 20px;
-            border-radius: 20px;
-            font-size: 16px;
-            font-weight: bold;
+            width: 100%;
+            max-width: 280px;
+            padding: 14px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 25px auto 10px auto;
+            display: block;
             cursor: pointer;
-            align-self: center; /* Centra il bottone */
-            margin-top: 10px;
+            transition: transform 0.1s;
         }
+
+        .btn-check:active { transform: scale(0.98); }
+
     </style>
 </head>
 <body>
 
-    <div class="app-container">
-        <!-- Bottone Chiudi -->
-        <span class="close-button">×</span>
+<div class="app-shell">
+    <div class="close-x">✕</div>
 
-        <!-- Titolo Viaggio con Contatore Progressivo -->
-        <div class="header-title">
-            <span class="label">Viaggio attivo</span>
-            <div class="timer-container">
-                <span class="count-number">0:00:</span>
-                <!-- L'effetto di scorrimento qui -->
-                <div class="scrolling-digits" id="timer-scroller">
-                    <span class="scrolling-digit" id="scrolling-digit">
-                        35
-                        <span class="next-digit-number" id="next-scrolling-digit">36</span>
-                    </span>
-                </span>
+    <div class="header">
+        Viaggio attivo 0:00:
+        <div class="timer-box">
+            <div class="rolling-container">
+                <div class="rolling-list" id="seconds-list">
+                    <div id="sec-current">35</div>
+                    <div id="sec-next">36</div>
+                </div>
             </div>
-        </div>
-
-        <!-- Primo Modulo: Info Utente -->
-        <div class="module-card">
-            <p class="user-info">Simone Ferranti</p>
-            <p class="user-id">800028026947</p>
-        </div>
-
-        <!-- Secondo Modulo: Dettagli Viaggio -->
-        <div class="module-card trip-details">
-            <div class="route-info">
-                <div class="r-badge">R</div>
-                <p class="label">Collegamento</p>
-            </div>
-            <p class="route-description">Stazione di Merano –<br>Stazione di Bolzano Sud - Fiera</p>
-            
-            <div class="detail-block">
-                <p class="label">Data</p>
-                <p class="detail-text">11.05.2026</p>
-            </div>
-
-            <div class="detail-block">
-                <p class="label">Orario</p>
-                <p class="detail-text">08:16–08:51</p>
-            </div>
-
-            <!-- Bottone Controlla Validità -->
-            <button class="check-button">Controlla validità</button>
         </div>
     </div>
 
-    <!-- Script per l'animazione del contatore -->
-    <script>
-        // Stato del timer
-        let currentSeconds = 35; // Partiamo da 0:00:35 come nell'immagine
+    <!-- Card 1 -->
+    <div class="card">
+        <div class="user-name">Simone Ferranti</div>
+        <div class="user-code">800028026947</div>
+    </div>
 
-        // Elementi DOM
-        const scroller = document.getElementById('timer-scroller');
-        const digitSpan = document.getElementById('scrolling-digit');
-        const nextDigitSpan = document.getElementById('next-scrolling-digit');
+    <!-- Card 2 -->
+    <div class="card">
+        <div class="route-row">
+            <div class="badge-r">R</div>
+            <div>
+                <span class="label">Collegamento</span>
+                <div class="info-bold">Stazione di Merano –<br>Stazione di Bolzano Sud - Fiera</div>
+            </div>
+        </div>
 
-        // Funzione per aggiornare il timer e l'animazione
-        function updateCounter() {
-            // Calcola il prossimo secondo
-            let nextSeconds = (currentSeconds + 1) % 60; // Cicla da 0 a 59
+        <div class="spacer">
+            <span class="label">Data</span>
+            <div class="info-bold">11.05.2026</div>
+        </div>
 
-            // Prepara il prossimo numero come stringa
-            let nextSecondsStr = String(nextSeconds).padStart(2, '0');
-            nextDigitSpan.innerText = nextSecondsStr;
+        <div class="spacer">
+            <span class="label">Orario</span>
+            <div class="info-bold">08:16–08:51</div>
+        </div>
 
-            // Triggera l'animazione di scorrimento
-            scroller.classList.add('is-animating');
+        <button class="btn-check">Controlla validità</button>
+    </div>
+</div>
 
-            // Imposta lo stato finale dopo l'animazione
-            setTimeout(() => {
-                currentSeconds = nextSeconds;
-                digitSpan.childNodes[0].nodeValue = nextSecondsStr; // Aggiorna il testo principale
-                scroller.classList.remove('is-animating'); // Reset per la prossima animazione
-            }, 200); // Durata dell'animazione CSS
-        }
+<script>
+    let currentSec = 35;
+    const list = document.getElementById('seconds-list');
+    const currentEl = document.getElementById('sec-current');
+    const nextEl = document.getElementById('sec-next');
 
-        // Imposta l'intervallo ogni secondo
-        setInterval(updateCounter, 1000);
-    </script>
+    function updateTimer() {
+        // Prepariamo il prossimo numero
+        let nextSec = (currentSec + 1) % 60;
+        nextEl.innerText = nextSec.toString().padStart(2, '0');
+
+        // Eseguiamo lo scorrimento verso l'alto
+        list.style.transform = "translateY(-50%)";
+
+        setTimeout(() => {
+            // Reset istantaneo della posizione e aggiornamento numeri
+            list.style.transition = "none";
+            list.style.transform = "translateY(0)";
+            currentSec = nextSec;
+            currentEl.innerText = currentSec.toString().padStart(2, '0');
+            
+            // Forziamo il reflow per riattivare la transizione
+            void list.offsetHeight; 
+            list.style.transition = "transform 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95)";
+        }, 300);
+    }
+
+    setInterval(updateTimer, 1000);
+</script>
+
 </body>
 </html>
